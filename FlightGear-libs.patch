@@ -1,6 +1,6 @@
-diff -Naur FlightGear-0.9.4/src/Airports/Makefile.am FlightGear-0.9.4-p/src/Airports/Makefile.am
---- FlightGear-0.9.4/src/Airports/Makefile.am	Fri Aug 29 19:35:45 2003
-+++ FlightGear-0.9.4-p/src/Airports/Makefile.am	Sat Apr  3 22:53:31 2004
+diff -urN aa/FlightGear-0.9.5/src/Airports/Makefile.am FlightGear-0.9.5/src/Airports/Makefile.am
+--- aa/FlightGear-0.9.5/src/Airports/Makefile.am	2003-08-29 19:35:45.000000000 +0200
++++ FlightGear-0.9.5/src/Airports/Makefile.am	2004-08-01 17:36:45.387128776 +0200
 @@ -7,6 +7,7 @@
  	simple.cxx simple.hxx
  
@@ -10,21 +10,35 @@ diff -Naur FlightGear-0.9.4/src/Airports/Makefile.am FlightGear-0.9.4-p/src/Airp
 +	-lsgprops -lsgstructure -lsgxml
  
  INCLUDES = -I$(top_srcdir) -I$(top_srcdir)/src
-diff -Naur FlightGear-0.9.4/src/FDM/YASim/Makefile.am FlightGear-0.9.4-p/src/FDM/YASim/Makefile.am
---- FlightGear-0.9.4/src/FDM/YASim/Makefile.am	Fri Jan  9 21:01:22 2004
-+++ FlightGear-0.9.4-p/src/FDM/YASim/Makefile.am	Mon Mar 29 14:44:33 2004
-@@ -40,6 +40,6 @@
+diff -urN aa/FlightGear-0.9.5/src/FDM/YASim/Makefile.am FlightGear-0.9.5/src/FDM/YASim/Makefile.am
+--- aa/FlightGear-0.9.5/src/FDM/YASim/Makefile.am	2004-06-09 16:08:47.000000000 +0200
++++ FlightGear-0.9.5/src/FDM/YASim/Makefile.am	2004-08-01 17:36:45.387128776 +0200
+@@ -43,9 +43,9 @@
  
  yasim_SOURCES = yasim-test.cpp $(SHARED_SOURCE_FILES)
  
--yasim_LDADD = -lsgxml -lsgprops -lsgmisc -lsgdebug -lsgstructure  $(base_LIBS)
+-yasim_LDADD = -lsgxml -lsgprops -lsgmisc -lsgdebug -lsgstructure -lsgtiming  $(base_LIBS)
 +yasim_LDADD = -lsgxml -lsgprops -lsgmisc -lsgdebug -lsgstructure -lsgtiming $(base_LIBS) -lz
  
+ proptest_SOURCES = proptest.cpp $(SHARED_SOURCE_FILES)
+-proptest_LDADD = -lsgxml -lsgprops -lsgmisc -lsgdebug -lsgstructure  $(base_LIBS)
++proptest_LDADD = -lsgxml -lsgprops -lsgmisc -lsgdebug -lsgstructure  $(base_LIBS) -lz
+ 
  INCLUDES = -I$(top_srcdir) -I$(top_srcdir)/src
-diff -Naur FlightGear-0.9.4/src/Main/Makefile.am FlightGear-0.9.4-p/src/Main/Makefile.am
---- FlightGear-0.9.4/src/Main/Makefile.am	Tue Mar 16 21:27:15 2004
-+++ FlightGear-0.9.4-p/src/Main/Makefile.am	Sat Apr  3 23:39:55 2004
-@@ -94,6 +94,6 @@
+diff -urN aa/FlightGear-0.9.5/src/GUI/Makefile.am FlightGear-0.9.5/src/GUI/Makefile.am
+--- aa/FlightGear-0.9.5/src/GUI/Makefile.am	2004-05-12 18:08:57.000000000 +0200
++++ FlightGear-0.9.5/src/GUI/Makefile.am	2004-08-01 17:37:51.730043120 +0200
+@@ -22,4 +22,4 @@
+ 
+ layout_test_LDADD = libGUI.a \
+                     -lsgprops -lsgdebug -lsgstructure -lsgmisc -lsgxml \
+-                    -lplibpw -lplibpu -lplibfnt -lplibul $(opengl_LIBS)
+\ Brak znaku nowej linii na koñcu pliku
++                    -lplibpw -lplibpu -lplibfnt -lplibul $(opengl_LIBS) -lz
+diff -urN aa/FlightGear-0.9.5/src/Main/Makefile.am FlightGear-0.9.5/src/Main/Makefile.am
+--- aa/FlightGear-0.9.5/src/Main/Makefile.am	2004-07-19 17:24:36.000000000 +0200
++++ FlightGear-0.9.5/src/Main/Makefile.am	2004-08-01 17:36:45.388128624 +0200
+@@ -103,6 +103,6 @@
  metar_LDADD = \
          -lsgenvironment -lsgio -lsgbucket -lsgmisc -lsgstructure -lsgdebug \
          -lplibnet -lplibul $(network_LIBS) \
@@ -32,25 +46,23 @@ diff -Naur FlightGear-0.9.4/src/Main/Makefile.am FlightGear-0.9.4-p/src/Main/Mak
 +        -lz $(base_LIBS) -lsgserial -lsgprops -lsgxml
  
  INCLUDES = -I$(top_srcdir) -I$(top_srcdir)/src
-diff -Naur FlightGear-0.9.4/src/Navaids/Makefile.am FlightGear-0.9.4-p/src/Navaids/Makefile.am
---- FlightGear-0.9.4/src/Navaids/Makefile.am	Fri Aug 29 19:35:49 2003
-+++ FlightGear-0.9.4-p/src/Navaids/Makefile.am	Sat Apr  3 23:34:04 2004
-@@ -11,7 +11,7 @@
- testnavs_SOURCES = testnavs.cxx
- testnavs_LDADD = \
- 	libNavaids.a \
--	-lsgtiming -lsgmath -lsgmisc -lsgdebug -lsgmagvar -lsgxml \
--	$(base_LIBS) -lz
-+	-lsgtiming -lsgmath -lsgmisc -lsgdebug -lsgmagvar -lsgxml -lsgstructure \
-+	$(base_LIBS) -lz -lsgprops
+diff -urN aa/FlightGear-0.9.5/src/Navaids/Makefile.am FlightGear-0.9.5/src/Navaids/Makefile.am
+--- aa/FlightGear-0.9.5/src/Navaids/Makefile.am	2004-06-09 16:08:48.000000000 +0200
++++ FlightGear-0.9.5/src/Navaids/Makefile.am	2004-08-01 17:36:45.388128624 +0200
+@@ -15,6 +15,6 @@
+ # testnavs_LDADD = \
+ # 	libNavaids.a \
+ # 	-lsgtiming -lsgmath -lsgmisc -lsgdebug -lsgmagvar -lsgxml \
+-# 	-lsgstructure $(base_LIBS) -lz
++# 	-lsgstructure $(base_LIBS) -lz -lsgprops
  
  INCLUDES = -I$(top_srcdir) -I$(top_srcdir)/src
-diff -Naur FlightGear-0.9.4/tests/Makefile.am FlightGear-0.9.4-p/tests/Makefile.am
---- FlightGear-0.9.4/tests/Makefile.am	Fri Aug 29 19:35:51 2003
-+++ FlightGear-0.9.4-p/tests/Makefile.am	Sat Apr  3 22:51:55 2004
+diff -urN aa/FlightGear-0.9.5/tests/Makefile.am FlightGear-0.9.5/tests/Makefile.am
+--- aa/FlightGear-0.9.5/tests/Makefile.am	2004-06-09 16:08:50.000000000 +0200
++++ FlightGear-0.9.5/tests/Makefile.am	2004-08-01 17:36:45.389128472 +0200
 @@ -17,4 +17,4 @@
  test_text_SOURCES = test-text.cxx
  
  test_up_SOURCES = test-up.cxx
--test_up_LDADD = -lsgmath -lsgdebug -lplibsg -lplibul $(base_LIBS)
-+test_up_LDADD = -lsgmath -lsgdebug -lplibsg -lplibul -lsgmisc -lsgxml -lsgstructure -lsgtiming -lz $(base_LIBS) -lsgprops
+-test_up_LDADD = -lsgmath -lsgxml -lsgmisc -lsgdebug -lsgstructure -lsgtiming -lplibsg -lplibul -lz $(base_LIBS)
++test_up_LDADD = -lsgmath -lsgxml -lsgmisc -lsgdebug -lsgstructure -lsgtiming -lplibsg -lplibul -lz $(base_LIBS) -lsgprops
