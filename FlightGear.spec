@@ -46,7 +46,7 @@ rozpowszechniaæ idee tego typu symulacji.
 rm missing
 aclocal
 autoconf
-automake -a -c
+automake -a -c -f
 %configure \
 	--with-network-olk
 %{__make}
