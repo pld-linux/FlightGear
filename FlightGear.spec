@@ -5,17 +5,18 @@ Version:	0.7.10
 Release:	1
 License:	GPL
 Group:		X11/Applications/Games
-Source0:	ftp://ftp.flightgear.org/pub/fgfs/Source/%{name}-%{version}.tar.gz
-Source1:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-base-%{version}.tar.gz
-Source2:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-docs-0.7.7.tar.gz
+Source0:	http://ftp.flightgear.org/pub/fgfs/Source/%{name}-%{version}.tar.gz
+Source1:	http://ftp.flightgear.org/pub/fgfs/Shared/fgfs-base-%{version}.tar.gz
+Source2:	http://ftp.flightgear.org/pub/fgfs/Shared/fgfs-docs-0.7.7.tar.gz
 Patch0:		%{name}-am_fix.patch
+Patch1:		%{name}-ac_fix.patch
 URL:		http://www.flightgear.org/
 BuildRequires:	OpenGL-devel
-BuildRequires:	SimGear-devel >= 0.0.14
+BuildRequires:	SimGear-devel >= 0.0.18
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequireS:	findutils
+BuildRequires:	findutils
 BuildRequires:	glut-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	metakit-devel
@@ -40,13 +41,14 @@ rozpowszechniaæ idee tego typu symulacji.
 
 %prep
 %setup -q -a 1 -a 2
-%patch0 -p 1
+%patch0 -p1
+%patch1 -p1
 
-find %{name}-0.7 -name 'CVS' -type d | xargs rm -rf
+#find %{name}-0.7 -name 'CVS' -type d | xargs rm -rf
 
 %build
 rm -f missing
-aclocal -I .
+aclocal
 %{__autoconf}
 %{__automake}
 %configure \
@@ -69,7 +71,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS %{name}-0.7/docs/*
+%doc AUTHORS NEWS %{name}/Docs/*
 %attr(755,root,root) %{_bindir}/fgfs
 %attr(755,root,root) %{_bindir}/runfgfs
+%attr(755,root,root) %{_bindir}/est-epsilon
+%attr(755,root,root) %{_bindir}/fgjs
+%attr(755,root,root) %{_bindir}/gl-info
+%attr(755,root,root) %{_bindir}/js_demo
 %{_libdir}/%{name}
+%{_mandir}/*
