@@ -3,10 +3,10 @@ Summary(pl):	darmowy symulator lotu
 Name:		FlightGear
 Version:	0.7.6
 Release:	1
+License:	GPL
 Group:		X11/Applications/Games
 Group(de):	X11/Applikationen/Spiele
 Group(pl):	X11/Aplikacje/Gry
-License:	GPL
 Source0:	ftp://ftp.flightgear.org/pub/fgfs/Source/%{name}-%{version}.tar.gz
 Source1:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-base-%{version}.tar.gz
 Source2:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-docs-%{version}.tar.gz
@@ -14,16 +14,16 @@ Patch0:		%{name}-libs.patch
 URL:		http://www.flightgear.org
 Requires:	OpenGL
 BuildRequires:	OpenGL-devel
-BuildRequires:	XFree86-devel
-BuildRequires:	libstdc++-devel
-BuildRequires:	glut-devel
-BuildRequires:	automake
-BuildRequires:	autoconf
-BuildRequires:	plib >= 1.2.0
 BuildRequires:	SimGear-devel >= 0.0.14
-BuildRequires:	zlib-devel
-BuildRequires:	metakit-devel
+BuildRequires:	XFree86-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequireS:	findutils
+BuildRequires:	glut-devel
+BuildRequires:	libstdc++-devel
+BuildRequires:	metakit-devel
+BuildRequires:	plib >= 1.2.0
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define _noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
@@ -56,7 +56,8 @@ automake -a -c
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}
-%{__make} DESTDIR="$RPM_BUILD_ROOT" install
+
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 echo "#!/bin/sh" > runfgfs
 echo "exec %{_bindir}/fgfs --fg-root=%{_datadir}/%{name} \$*" >> runfgfs
