@@ -64,14 +64,12 @@ echo "exec %{_bindir}/fgfs --fg-root=%{_libdir}/%{name} \$*" >> runfgfs
 install runfgfs $RPM_BUILD_ROOT%{_bindir}
 cp -a %{name} $RPM_BUILD_ROOT%{_libdir}
 
-gzip -9nf AUTHORS NEWS
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz %{name}-0.7/docs/*
+%doc AUTHORS NEWS %{name}-0.7/docs/*
 %attr(755,root,root) %{_bindir}/fgfs
 %attr(755,root,root) %{_bindir}/runfgfs
 %{_libdir}/%{name}
