@@ -1,20 +1,20 @@
 Summary:	Free Flight Simulator
 Summary(pl):	darmowy symulator lotu
 Name:		FlightGear
-Version:	0.9.3
-Release:	2
+Version:	0.9.4
+Release:	1
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://ftp.flightgear.org/pub/fgfs/Source/%{name}-%{version}.tar.gz
-# Source0-md5:	6e5b672fb0167f73a4e4346a9a6250e3
-Source1:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-base-%{version}.tar.gz
-# Source1-md5:	ac58d5a0b7fc67060892773d98d994e2
+# Source0-md5:	c815fd8117ebad44db2c9e0fe868cf26
+Source1:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-base-%{version}.tar.bz2
+# Source1-md5:	9dcb351455b13cd8892612f69d6285fe
 Source2:	ftp://ftp.flightgear.org/pub/fgfs/Everything-0.7/Base-Packages/fgfs-docs-0.7.7.tar.gz
 # Source2-md5:	31f35d3e63e522565e8990ead99e7507
 Patch0:		%{name}-libs.patch
 URL:		http://www.flightgear.org/
 BuildRequires:	OpenGL-devel
-BuildRequires:	SimGear-devel >= 0.3.4-2
+BuildRequires:	SimGear-devel >= 0.3.5
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -76,5 +76,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS %{name}/Docs/*
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_sbindir}/*
 %{_datadir}/games/%{name}
 %{_mandir}/*/*
