@@ -6,8 +6,11 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://ftp.flightgear.org/pub/fgfs/Source/%{name}-%{version}.tar.gz
+# Source0-md5:	daf0db8ff92e3d3a61a814f90b148b0b
 Source1:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-base-%{version}.tar.gz
+# Source1-md5:	dc44ddf301cd78c2e8f86e45a474b9f7
 Source2:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-docs-0.7.7.tar.gz
+# Source2-md5:	31f35d3e63e522565e8990ead99e7507
 Patch0:		%{name}-libs.patch
 URL:		http://www.flightgear.org/
 BuildRequires:	OpenGL-devel
