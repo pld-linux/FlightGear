@@ -42,8 +42,10 @@ rozpowszechniaæ idee tego typu symulacji.
 %setup -q -a 1 -a 2
 %patch0 -p 1
 
+find %{name}-0.7 -name 'CVS' -type d | xargs rm -rf
+
 %build
-rm missing
+rm -f missing
 aclocal -I .
 autoconf
 automake -a -c -f
@@ -61,7 +63,6 @@ echo "#!/bin/sh" > runfgfs
 echo "exec %{_bindir}/fgfs --fg-root=%{_libdir}/%{name} \$*" >> runfgfs
 install runfgfs $RPM_BUILD_ROOT%{_bindir}
 cp -a %{name} $RPM_BUILD_ROOT%{_libdir}
-find %{name}-0.7 -name 'CVS' -type d | xargs rm -rf
 
 gzip -9nf AUTHORS NEWS
 
@@ -70,8 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc %{name}-0.7/docs/*
-%doc *.gz
+%doc *.gz %{name}-0.7/docs/*
 %attr(755,root,root) %{_bindir}/fgfs
 %attr(755,root,root) %{_bindir}/runfgfs
 %{_libdir}/%{name}
