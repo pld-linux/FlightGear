@@ -2,7 +2,7 @@ Summary:	Free Flight Simulator
 Summary(pl):	darmowy symulator lotu
 Name:		FlightGear
 Version:	0.7.6
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Games
 Group(de):	X11/Applikationen/Spiele
@@ -55,14 +55,14 @@ automake -a -c
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}
+install -d $RPM_BUILD_ROOT%{_libdir}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} DESTDIR="$RPM_BUILD_ROOT" install
 
 echo "#!/bin/sh" > runfgfs
-echo "exec %{_bindir}/fgfs --fg-root=%{_datadir}/%{name} \$*" >> runfgfs
+echo "exec %{_bindir}/fgfs --fg-root=%{_libdir}/%{name} \$*" >> runfgfs
 install runfgfs $RPM_BUILD_ROOT%{_bindir}
-cp -a %{name} $RPM_BUILD_ROOT%{_datadir}
+cp -a %{name} $RPM_BUILD_ROOT%{_libdir}
 find %{name}-0.7 -name 'CVS' -type d | xargs rm -rf
 
 gzip -9nf AUTHORS NEWS
@@ -76,4 +76,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.gz
 %attr(755,root,root) %{_bindir}/fgfs
 %attr(755,root,root) %{_bindir}/runfgfs
-%{_datadir}/%{name}
+%{_libdir}/%{name}
