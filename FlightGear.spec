@@ -11,8 +11,7 @@ Source0:	ftp://ftp.flightgear.org/pub/fgfs/Source/%{name}-%{version}.tar.gz
 Source1:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-base-%{version}.tar.gz
 Source2:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-docs-%{version}.tar.gz
 Patch0:		%{name}-libs.patch
-URL:		http://www.flightgear.org
-Requires:	OpenGL
+URL:		http://www.flightgear.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	SimGear-devel >= 0.0.14
 BuildRequires:	XFree86-devel
@@ -24,6 +23,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	metakit-devel
 BuildRequires:	plib >= 1.2.0
 BuildRequires:	zlib-devel
+Requires:	OpenGL
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define _noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
