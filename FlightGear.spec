@@ -18,7 +18,7 @@ BuildRequires:	automake
 BuildRequires:	findutils
 BuildRequires:	glut-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	metakit-devel
+BuildRequires:	metakit-devel >= 2.4.3
 BuildRequires:	plib >= 1.6.0
 BuildRequires:	zlib-devel
 Requires:	OpenGL
