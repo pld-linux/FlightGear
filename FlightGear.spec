@@ -1,18 +1,17 @@
 Summary:	Free Flight Simulator
 Summary(pl):	darmowy symulator lotu
 Name:		FlightGear
-Version:	0.7.10
+Version:	0.8.0
 Release:	1
 License:	GPL
 Group:		X11/Applications/Games
-Source0:	http://ftp.flightgear.org/pub/fgfs/Source/%{name}-%{version}.tar.gz
-Source1:	http://ftp.flightgear.org/pub/fgfs/Shared/fgfs-base-%{version}.tar.gz
-Source2:	http://ftp.flightgear.org/pub/fgfs/Shared/fgfs-docs-0.7.7.tar.gz
-Patch0:		%{name}-am_fix.patch
-Patch1:		%{name}-ac_fix.patch
+Source0:	ftp://ftp.flightgear.org/pub/fgfs/Source/%{name}-%{version}.tar.gz
+Source1:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-base-%{version}.tar.gz
+Source2:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-docs-0.7.7.tar.gz
+Patch0:		%{name}-libs.patch
 URL:		http://www.flightgear.org/
 BuildRequires:	OpenGL-devel
-BuildRequires:	SimGear-devel >= 0.0.18
+BuildRequires:	SimGear-devel >= 0.2.0
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -20,7 +19,7 @@ BuildRequires:	findutils
 BuildRequires:	glut-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	metakit-devel
-BuildRequires:	plib >= 1.2.0
+BuildRequires:	plib >= 1.6.0
 BuildRequires:	zlib-devel
 Requires:	OpenGL
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -42,9 +41,7 @@ rozpowszechniaæ idee tego typu symulacji.
 %prep
 %setup -q -a 1 -a 2
 %patch0 -p1
-%patch1 -p1
-
-#find %{name}-0.7 -name 'CVS' -type d | xargs rm -rf
+find %{name} -name 'CVS' -type d | xargs rm -rf
 
 %build
 rm -f missing
@@ -79,4 +76,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gl-info
 %attr(755,root,root) %{_bindir}/js_demo
 %{_libdir}/%{name}
-%{_mandir}/*
+%{_mandir}/*/*
