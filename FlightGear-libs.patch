@@ -1,0 +1,9 @@
+diff -Naur FlightGear-0.8.0/tests/Makefile.am FlightGear-0.8.0-p/tests/Makefile.am
+--- FlightGear-0.8.0/tests/Makefile.am	Tue Sep  3 00:24:33 2002
++++ FlightGear-0.8.0-p/tests/Makefile.am	Fri Sep 13 21:02:27 2002
+@@ -21,4 +21,4 @@
+ test_text_LDADD = $(base_LIBS)
+ 
+ test_up_SOURCES = test-up.cxx
+-test_up_LDADD = -lsgmath -lsgdebug -lplibsg -lplibul $(base_LIBS)
++test_up_LDADD = -lsgmath -lsgdebug -lplibsg -lplibul -lsgmisc -lsgxml -lz $(base_LIBS)
