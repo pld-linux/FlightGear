@@ -41,6 +41,7 @@ rozpowszechniaæ idee tego typu symulacji.
 %prep
 %setup -q -a 1 -a 2
 %patch0 -p1
+find %{name} -name 'CVS' -type d | xargs rm -rf
 
 %build
 rm -f missing
