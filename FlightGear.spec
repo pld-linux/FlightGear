@@ -1,14 +1,14 @@
 Summary:	Free Flight Simulator
 Summary(pl):	darmowy symulator lotu
 Name:		FlightGear
-Version:	0.7.6
-Release:	2
+Version:	0.7.10
+Release:	1
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://ftp.flightgear.org/pub/fgfs/Source/%{name}-%{version}.tar.gz
 Source1:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-base-%{version}.tar.gz
-Source2:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-docs-%{version}.tar.gz
-Patch0:		%{name}-libs.patch
+Source2:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-docs-0.7.7.tar.gz
+Patch0:		%{name}-am_fix.patch
 URL:		http://www.flightgear.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	SimGear-devel >= 0.0.14
@@ -40,11 +40,11 @@ rozpowszechniaæ idee tego typu symulacji.
 
 %prep
 %setup -q -a 1 -a 2
-%patch0 -p1
+%patch0 -p 1
 
 %build
 rm missing
-aclocal
+aclocal -I .
 autoconf
 automake -a -c -f
 %configure \
