@@ -1,0 +1,162 @@
+diff -urN FlightGear-0.7.10.orig/configure.in FlightGear-0.7.10/configure.in
+--- FlightGear-0.7.10.orig/configure.in	Wed Aug 28 20:12:25 2002
++++ FlightGear-0.7.10/configure.in	Wed Aug 28 20:25:51 2002
+@@ -56,8 +56,10 @@
+ AM_CONDITIONAL(ANCIENT_AUTOMAKE, test $AUTO_MAKE_VERSION -lt 14)
+ AM_CONDITIONAL(OLD_AUTOMAKE, test $AUTO_MAKE_VERSION -lt 15)
+ 
++AM_CONDITIONAL(ENABLE_XMESA_FX, [false])
++
+ # Used by JSBSim
+-AC_DEFINE( FGFS )
++AC_DEFINE( FGFS,,[fucken] )
+ 
+ AR="ar"
+ OS=`uname -s`
+@@ -73,7 +75,7 @@
+ # with_logging=yes
+ AC_ARG_WITH(logging, [  --with-logging          Include logging output (default)])
+ if test "x$with_logging" = "xno" ; then
+-    AC_DEFINE( FG_NDEBUG )
++    AC_DEFINE( FG_NDEBUG,,[fucken] )
+ fi
+ 
+ 
+@@ -104,7 +106,7 @@
+     echo "Building without Oliver's multi-pilot network support"
+ else
+     echo "Building with Oliver's multi-pilot network support"
+-    AC_DEFINE( FG_NETWORK_OLK )
++    AC_DEFINE( FG_NETWORK_OLK,,[fucken] )
+ fi
+ AM_CONDITIONAL(ENABLE_NETWORK_OLK, test "x$with_network_olk" != "xno")
+ 
+@@ -124,7 +126,7 @@
+         echo "  ftp://ftp.uu.net in the directory graphics/jpeg"
+ 	exit 1
+     fi
+-    AC_DEFINE( FG_JPEG_SERVER )
++    AC_DEFINE( FG_JPEG_SERVER,,[fucken] )
+ fi
+ AM_CONDITIONAL(ENABLE_JPEG_SERVER, test "x$ac_cv_header_simgear_screen_jpgfactory_hxx" = "xyes")
+ 
+@@ -133,7 +135,7 @@
+ AC_ARG_WITH(new-environment, [  --with-new-environment  Include new experimental environment subsystem])
+ if test "x$with_new_environment" = "xyes" ; then
+     echo "Building with new environment subsystem"
+-    AC_DEFINE( FG_NEW_ENVIRONMENT )
++    AC_DEFINE( FG_NEW_ENVIRONMENT,,[fucken] )
+ else
+     echo "Building with old weather subsystem"
+ fi
+@@ -144,7 +146,7 @@
+ AC_ARG_WITH(old-mouse, [  --with-old-mouse  Disable new mouse input support])
+ if test "x$with_old_mouse" = "xyes" ; then
+     echo "Building with old mouse subsystem"
+-    AC_DEFINE( FG_OLD_MOUSE )
++    AC_DEFINE( FG_OLD_MOUSE,,[fucken] )
+ else
+     echo "Building with new mouse subsystem"
+ fi
+@@ -157,7 +159,7 @@
+ dnl Thread related checks
+ AC_ARG_WITH(threads, [  --with-threads          Include tile loading threads [default=no]])
+ if test "x$with_threads" = "xyes"; then
+-    AC_DEFINE(ENABLE_THREADS)
++    AC_DEFINE(ENABLE_THREADS,,[fucken])
+     CXXFLAGS="$CXXFLAGS -D_REENTRANT"
+     CFLAGS="$CFLAGS -D_REENTRANT"
+     AC_CHECK_HEADER(pthread.h)
+@@ -208,13 +210,13 @@
+ # Check for external variables daylight and timezone.
+ AC_EXT_DAYLIGHT
+ if test "$have_daylight" = yes; then
+-    AC_DEFINE( HAVE_DAYLIGHT )
++    AC_DEFINE( HAVE_DAYLIGHT,,[fucken] )
+ fi
+ # AM_CONDITIONAL(HAVE_DAYLIGHT, test "$have_daylight" = yes )
+ 
+ AC_EXT_TIMEZONE
+ if test "$have_timezone" = yes; then
+-    AC_DEFINE( HAVE_TIMEZONE )
++    AC_DEFINE( HAVE_TIMEZONE,,[fucken] )
+ fi
+ # AM_CONDITIONAL(HAVE_TIMEZONE, test "$have_timezone" = yes )
+ 
+@@ -228,7 +230,7 @@
+ 	-o "x$ac_cv_header_windows_h" = "xyes" \
+         -o "$HOSTTYPE" = "macintosh"; then
+ 
+-    AC_DEFINE( ENABLE_AUDIO_SUPPORT )
++    AC_DEFINE( ENABLE_AUDIO_SUPPORT,,[fucken] )
+     audio_LIBS="-lplibsl -lplibsm"
+     AC_MSG_RESULT(yes)
+     if test -r /usr/include/audio.h; then
+@@ -309,13 +311,13 @@
+ 	save_LIBS="$LIBS"
+ 	AC_CHECK_LIB(GL, XMesaSetFXmode)
+ 	if test "x$ac_cv_lib_GL_XMesaSetFXmode" = "xyes" ; then
+-	    AC_DEFINE( XMESA )
+-            AC_DEFINE( FX )
++	    AC_DEFINE( XMESA,,[fucken] )
++            AC_DEFINE( FX,,[fucken])
+ 	else
+ 	    AC_CHECK_LIB(MesaGL, XMesaSetFXmode)
+ 	    if test "x$ac_cv_lib_MesaGL_XMesaSetFXmode" = "xyes" ; then
+-		AC_DEFINE( XMESA )
+-        	AC_DEFINE( FX )
++		AC_DEFINE( XMESA,,[fucken] )
++        	AC_DEFINE( FX,,[fucken])
+ 	    fi
+ 	fi
+ 	LIBS="$save_LIBS"
+@@ -340,11 +342,11 @@
+     # winbloze-isms.  We'll just do this manually for now.
+ 
+     echo Win32 specific hacks...
+-    AC_DEFINE( WIN32 )
++    AC_DEFINE( WIN32,,[fucken])
+ 
+     # force a failed check since we will be building under windoze
+     AM_CONDITIONAL(ENABLE_XMESA_FX, test "no" = "yes")
+-
++    
+     # just define these to true and hope for the best
+     ac_cv_lib_glut_glutGetModifiers="yes"
+     ac_cv_lib_glut_glutGameModeString="yes"
+@@ -419,7 +421,7 @@
+ # AC_CHECK_LIB(glut, glutGameModeString)
+ 
+ # If we get here then plib is available, so force use of plib joystick lib
+-AC_DEFINE( ENABLE_PLIB_JOYSTICK )
++AC_DEFINE( ENABLE_PLIB_JOYSTICK,,[fucken] )
+ 
+ # Do we have a new CVS plib version with jsJoystick::getName?
+ echo -n "Testing for Plib joystick getName support: "
+@@ -427,7 +429,7 @@
+                  plib_js_has_getname=yes, plib_js_has_getname=no )
+ echo $plib_js_has_getname
+ if test $plib_js_has_getname = 'yes'; then
+-    AC_DEFINE(FG_PLIB_JOYSTICK_GETNAME)
++    AC_DEFINE(FG_PLIB_JOYSTICK_GETNAME,,[fucken])
+ fi
+ 
+ # Check for the presence of SimGear
+@@ -483,7 +485,7 @@
+ # Check for MetaKit
+ AC_CHECK_HEADER(mk4.h)
+ if test "x$ac_cv_header_mk4_h" = "xyes"; then
+-    AC_DEFINE( HAVE_MK4 )
++    AC_DEFINE( HAVE_MK4,,[fucken] )
+ else
+     echo
+     echo "MetaKit library not found."
+@@ -501,7 +503,7 @@
+ # Check for system installed zlib
+ AC_CHECK_HEADER(zlib.h)
+ if test "x$ac_cv_header_zlib_h" = "xyes"; then
+-    AC_DEFINE( HAVE_ZLIB )
++    AC_DEFINE( HAVE_ZLIB,,[fucken] )
+ else
+     echo
+     echo "zlib library not found."
