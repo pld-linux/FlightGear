@@ -1,0 +1,26 @@
+diff -Naur FlightGear-0.7.6/src/Airports/Makefile.am FlightGear-0.7.6-/src/Airports/Makefile.am
+--- FlightGear-0.7.6/src/Airports/Makefile.am	Wed Sep 20 23:15:34 2000
++++ FlightGear-0.7.6-/src/Airports/Makefile.am	Sun Apr 22 00:57:47 2001
+@@ -7,9 +7,9 @@
+ 	simple.cxx simple.hxx
+ 
+ gensimple_SOURCES = gensimple.cxx
+-gensimple_LDADD = libAirports.a -lsgdebug -lsgmisc -lmk4 -lz
++gensimple_LDADD = libAirports.a -lsgxml -lsgdebug -lsgmisc -lmk4 -lz
+ 
+ genrunways_SOURCES = genrunways.cxx
+-genrunways_LDADD = libAirports.a -lsgdebug -lsgmisc -lmk4 -lz
++genrunways_LDADD = libAirports.a -lsgxml -lsgdebug -lsgmisc -lmk4 -lz
+ 
+ INCLUDES += -I$(top_srcdir) -I$(top_srcdir)/src
+diff -Naur FlightGear-0.7.6/src/Navaids/Makefile.am FlightGear-0.7.6-/src/Navaids/Makefile.am
+--- FlightGear-0.7.6/src/Navaids/Makefile.am	Wed Sep 20 23:22:04 2000
++++ FlightGear-0.7.6-/src/Navaids/Makefile.am	Sun Apr 22 01:04:06 2001
+@@ -8,6 +8,6 @@
+ 	nav.hxx navlist.hxx navlist.cxx
+ 
+ testnavs_SOURCES = testnavs.cxx
+-testnavs_LDADD = libNavaids.a -lsgmath -lsgmisc -lsgdebug -lz
++testnavs_LDADD = libNavaids.a -lsgmath -lsgmisc -lsgdebug -lz -lsgxml
+ 
+ INCLUDES += -I$(top_srcdir) -I$(top_srcdir)/src
