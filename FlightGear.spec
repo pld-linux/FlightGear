@@ -47,8 +47,8 @@ find %{name}-0.7 -name 'CVS' -type d | xargs rm -rf
 %build
 rm -f missing
 aclocal -I .
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 %configure \
 	--with-network-olk
 %{__make}
