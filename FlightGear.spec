@@ -1,15 +1,15 @@
 Summary:	Free Flight Simulator
 Summary(pl):	darmowy symulator lotu
 Name:		FlightGear
-Version:	0.8.0
+Version:	0.9.2
 Release:	1
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://ftp.flightgear.org/pub/fgfs/Source/%{name}-%{version}.tar.gz
-# Source0-md5:	daf0db8ff92e3d3a61a814f90b148b0b
+# Source0-md5:	b2087f497fbd6fa02d987e19c96e61e4
 Source1:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-base-%{version}.tar.gz
-# Source1-md5:	dc44ddf301cd78c2e8f86e45a474b9f7
-Source2:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-docs-0.7.7.tar.gz
+# Source1-md5:	a097608a86a0de363ff785997495b92d
+Source2:	ftp://ftp.flightgear.org/pub/fgfs/Everything-0.7/Base-Packages/fgfs-docs-0.7.7.tar.gz
 # Source2-md5:	31f35d3e63e522565e8990ead99e7507
 Patch0:		%{name}-libs.patch
 URL:		http://www.flightgear.org/
@@ -50,20 +50,22 @@ rm -f missing
 %{__autoconf}
 %{__automake}
 %configure \
-	--with-network-olk
+	--with-network-olk \
+	--with-multiplayer
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}
+install -d $RPM_BUILD_ROOT%{_datadir}/games
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 echo "#!/bin/sh" > runfgfs
-echo "exec %{_bindir}/fgfs --fg-root=%{_libdir}/%{name} \$*" >> runfgfs
+echo "exec %{_bindir}/fgfs --fg-root=%{_datadir}/games/%{name} \$*" >> runfgfs
 install runfgfs $RPM_BUILD_ROOT%{_bindir}
-cp -a %{name} $RPM_BUILD_ROOT%{_libdir}
+cp -a %{name} $RPM_BUILD_ROOT%{_datadir}/games
+cp -R %{name}-%{version}/* $RPM_BUILD_ROOT%{_datadir}/games/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -71,11 +73,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS %{name}/Docs/*
-%attr(755,root,root) %{_bindir}/fgfs
-%attr(755,root,root) %{_bindir}/runfgfs
-%attr(755,root,root) %{_bindir}/est-epsilon
-%attr(755,root,root) %{_bindir}/fgjs
-%attr(755,root,root) %{_bindir}/gl-info
-%attr(755,root,root) %{_bindir}/js_demo
-%{_libdir}/%{name}
+%attr(755,root,root) %{_bindir}/*
+%{_datadir}/games/%{name}
 %{_mandir}/*/*
