@@ -37,7 +37,7 @@ be expanded and improved upon by anyone interested in contributing.
 
 %description -l pl
 Projet Flight Gear to wyrafinowany symulator lotów pozwalaj±cy
-rozpowszechniaæ idee tego typu symulacji. 
+rozpowszechniaæ idee tego typu symulacji.
 
 %prep
 %setup -q -a 1 -a 2
