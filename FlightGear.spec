@@ -45,7 +45,7 @@ find %{name} -name 'CVS' -type d | xargs rm -rf
 
 %build
 rm -f missing
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
