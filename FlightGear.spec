@@ -14,7 +14,7 @@ Source2:	ftp://ftp.flightgear.org/pub/fgfs/Everything-0.7/Base-Packages/fgfs-doc
 Patch0:		%{name}-libs.patch
 URL:		http://www.flightgear.org/
 BuildRequires:	OpenGL-devel
-BuildRequires:	SimGear-devel >= 0.2.0
+BuildRequires:	SimGear-devel >= 0.3.3
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
