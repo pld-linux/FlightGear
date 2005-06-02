@@ -19,7 +19,6 @@ BuildRequires:	SimGear-devel >= 0.3.6
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
-BuildRequires:	findutils
 BuildRequires:	glut-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	metakit-devel >= 2.4.3
