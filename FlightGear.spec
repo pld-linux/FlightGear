@@ -15,7 +15,7 @@ Patch0:		%{name}-libs.patch
 URL:		http://www.flightgear.org/
 BuildRequires:	OpenAL-devel
 BuildRequires:	OpenGL-devel
-BuildRequires:	SimGear-devel >= 0.3.6
+BuildRequires:	SimGear-devel >= 0.3.8
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -25,8 +25,8 @@ BuildRequires:	metakit-devel >= 2.4.3
 BuildRequires:	plib-devel >= 1.8.0
 BuildRequires:	zlib-devel
 Requires:	OpenGL
-Requires:	SimGear >= 0.3.6
-Requires:	plib >= 1.8.0
+Requires:	SimGear >= 0.3.8
+Requires:	plib >= 1.8.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define _noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
