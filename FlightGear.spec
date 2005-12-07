@@ -1,31 +1,31 @@
 Summary:	Free Flight Simulator
 Summary(pl):	darmowy symulator lotu
 Name:		FlightGear
-Version:	0.9.8
-Release:	0.1
+Version:	0.9.9
+Release:	0.9
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://ftp.flightgear.org/pub/fgfs/Source/%{name}-%{version}.tar.gz
-# Source0-md5:	614d11b4fc75479cb3bf42a333705242
+# Source0-md5:	c1bff0cc9eda34f2a31ec9cd4e5216e6
 Source1:	ftp://ftp.flightgear.org/pub/fgfs/Shared/fgfs-base-%{version}.tar.bz2
-# Source1-md5:	7354da8d5232ee02daee8d8759e83af3
+# Source1-md5:	c262f7022479c249c486a195d6755579
 Source2:	ftp://ftp.flightgear.org/pub/fgfs/Everything-0.7/Base-Packages/fgfs-docs-0.7.7.tar.gz
 # Source2-md5:	31f35d3e63e522565e8990ead99e7507
 Patch0:		%{name}-libs.patch
 URL:		http://www.flightgear.org/
 BuildRequires:	OpenAL-devel
 BuildRequires:	OpenGL-devel
-BuildRequires:	SimGear-devel >= 0.3.8
+BuildRequires:	SimGear-devel >= 0.3.9
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	glut-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	metakit-devel >= 2.4.3
-BuildRequires:	plib-devel >= 1.8.0
+BuildRequires:	plib-devel >= 1.8.4
 BuildRequires:	zlib-devel
 Requires:	OpenGL
-Requires:	SimGear >= 0.3.8
+Requires:	SimGear >= 0.3.9
 Requires:	plib >= 1.8.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
