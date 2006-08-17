@@ -66,3 +66,61 @@ diff -burN FlightGear-0.9.6.orig/tests/Makefile.am FlightGear-0.9.6/tests/Makefi
 +                    -lplibpw -lplibpu -lplibfnt -lplibul $(opengl_LIBS) \
 +		    -lxml
 +
+--- FlightGear-0.9.10/utils/GPSsmooth/Makefile.am.orig	2006-08-16 20:29:39.000000000 -0700
++++ FlightGear-0.9.10/utils/GPSsmooth/Makefile.am	2006-08-16 20:36:00.000000000 -0700
+@@ -5,7 +5,7 @@
+ 	gps_main.cxx
+ 
+ GPSsmooth_LDADD = \
+-	-lsgtiming -lsgmisc -lsgdebug -lplibnet -lplibul \
++	-lsgtiming -lsgmisc -lsgdebug -lplibnet -lplibul -lsgprops -lsgxml -lsgmisc -lsgstructure \
+ 	$(joystick_LIBS) $(network_LIBS) $(base_LIBS) -lz
+ 
+ MIDGsmooth_SOURCES = \
+@@ -13,7 +13,7 @@
+ 	MIDG_main.cxx
+ 
+ MIDGsmooth_LDADD = \
+-	-lsgio -lsgserial -lsgtiming -lsgmath -lsgbucket -lsgmisc -lsgdebug \
++	-lsgio -lsgserial -lsgtiming -lsgmath -lsgbucket -lsgmisc -lsgdebug -lsgstructure -lsgprops -lsgxml \
+ 	-lplibnet -lplibul \
+ 	$(joystick_LIBS) $(network_LIBS) $(base_LIBS) -lz
+ 
+--- FlightGear-0.9.10/utils/Modeller/Makefile.am.orig	2006-08-16 20:36:44.000000000 -0700
++++ FlightGear-0.9.10/utils/Modeller/Makefile.am	2006-08-16 20:38:58.000000000 -0700
+@@ -8,4 +8,6 @@
+ animassist_LDADD = $(base_LIBS)
+ 
+ normalmap_SOURCES = normalmap.cxx
+-normalmap_LDADD = -lsgscreen $(opengl_LIBS) $(base_LIBS) -lz
++normalmap_LDADD = -lsgscreen -lsgdebug \
++	-lplibssg -lplibsg -lplibul \
++	$(opengl_LIBS) $(base_LIBS) -lz
+--- FlightGear-0.9.10/src/Main/metar_main.cxx.orig	2006-08-16 20:26:14.000000000 -0700
++++ FlightGear-0.9.10/src/Main/metar_main.cxx	2006-08-16 20:26:55.000000000 -0700
+@@ -28,6 +28,10 @@
+ #include <simgear/environment/metar.hxx>
+ #include <simgear/structure/exception.hxx>
+ 
++// Not really used there definitions - just to fix missing symbol in libsgsky.so.
++class SGSky;
++SGSky *thesky;
++
+ using namespace std;
+ 
+ // text color
+--- FlightGear-0.9.10/src/Main/Makefile.am.mkorig	2006-08-17 14:09:38.000000000 -0700
++++ FlightGear-0.9.10/src/Main/Makefile.am	2006-08-17 14:16:55.000000000 -0700
+@@ -106,8 +106,9 @@
+ metar_SOURCES = metar_main.cxx
+ 
+ metar_LDADD = \
+-        -lsgenvironment -lsgio -lsgbucket -lsgmisc -lsgstructure -lsgdebug \
+-        -lplibnet -lplibul $(network_LIBS) \
+-        -lz $(base_LIBS) -lsgserial -lsgprops -lsgxml
++        -lsgenvironment -lsgio -lsgbucket -lsgmisc -lsgstructure -lsgdebug -lsgsky  \
++        -lplibnet -lplibul -lplibsg -lplibssg -lopenal $(network_LIBS) \
++        -lz -lGLU $(base_LIBS) -lsgserial -lsgprops -lsgxml -lsgscreen -lsgsound -lsgmath
++
+ 
+ INCLUDES = -I$(top_srcdir) -I$(top_srcdir)/src -I$(top_srcdir)/src/FDM/JSBSim
