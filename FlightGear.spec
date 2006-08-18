@@ -43,7 +43,7 @@ flight simulator ideas. We are developing a solid basic sim that can
 be expanded and improved upon by anyone interested in contributing.
 
 %description -l pl
-Projet Flight Gear to wyrafinowany symulator lotów pozwalaj±cy
+Projekt Flight Gear to wyrafinowany symulator lotów pozwalaj±cy
 rozpowszechniaæ idee tego typu symulacji.
 
 %prep
