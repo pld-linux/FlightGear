@@ -3,7 +3,7 @@
 #   http://www.flightgear.org/Downloads/aircraft/index.shtml
 
 Summary:	Free Flight Simulator
-Summary(pl):	darmowy symulator lotu
+Summary(pl.UTF-8):   darmowy symulator lotu
 Name:		FlightGear
 Version:	0.9.10
 Release:	1
@@ -42,9 +42,9 @@ simulator framework for the development and pursuit of interesting
 flight simulator ideas. We are developing a solid basic sim that can
 be expanded and improved upon by anyone interested in contributing.
 
-%description -l pl
-Projekt Flight Gear to wyrafinowany symulator lotów pozwalaj±cy
-rozpowszechniaæ idee tego typu symulacji.
+%description -l pl.UTF-8
+Projekt Flight Gear to wyrafinowany symulator lotÃ³w pozwalajÄ…cy
+rozpowszechniaÄ‡ idee tego typu symulacji.
 
 %prep
 %setup -q -a 1 -a 2
