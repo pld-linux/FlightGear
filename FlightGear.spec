@@ -3,7 +3,7 @@
 #   http://www.flightgear.org/Downloads/aircraft/index.shtml
 
 Summary:	Free Flight Simulator
-Summary(pl.UTF-8):   darmowy symulator lotu
+Summary(pl.UTF-8):	darmowy symulator lotu
 Name:		FlightGear
 Version:	0.9.10
 Release:	1
