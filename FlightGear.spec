@@ -6,7 +6,7 @@ Summary:	Free Flight Simulator
 Summary(pl.UTF-8):	darmowy symulator lotu
 Name:		FlightGear
 Version:	2.10.0
-Release:	0.2
+Release:	1
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://mirrors.ibiblio.org/pub/mirrors/flightgear/ftp/Source/flightgear-%{version}.tar.bz2
@@ -22,10 +22,10 @@ BuildRequires:	cmake
 BuildRequires:	OpenAL-devel
 BuildRequires:	OpenGL-devel
 BuildRequires:	SimGear-devel = %{version}
-BuildRequires:	glut-devel
+BuildRequires:	freeglut-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml-devel
-BuildRequires:	plib-devel >= 1.8.4
+BuildRequires:	plib-devel >= 1.8.5-3
 BuildRequires:	zlib-devel
 Requires:	OpenGL
 Requires:	OpenSceneGraph-plugins
