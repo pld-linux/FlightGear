@@ -5,18 +5,17 @@
 Summary:	Free Flight Simulator
 Summary(pl.UTF-8):	darmowy symulator lotu
 Name:		FlightGear
-Version:	2.10.0
-Release:	1
+Version:	2.12.0
+Release:	0.1
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://mirrors.ibiblio.org/pub/mirrors/flightgear/ftp/Source/flightgear-%{version}.tar.bz2
-# Source0-md5:	ae7fc8d1e446c5d1fe2aa82ee41dcac5
-Source1:	ftp://flightgear.wo0t.de/ftp/Shared/FlightGear-data-%{version}.tar.bz2
-# Source1-md5:	82a9cbc81313195a7ed1aa87a9a2a0b3
+# Source0-md5:	23e2de5f311f4cbe94ec3386736ee8a5
+Source1:	ftp://flightgear.wo0t.de/ftp/Shared/FlightGear-data-%{version}.tar.bz
+# Source1-md5:	049cfa1f7bc7de528630c2a41c6ad6eb
 #Source2:	ftp://ftp.flightgear.org/pub/fgfs/Everything-0.7/Base-Packages/fgfs-docs-0.7.7.tar.gz
 ## Source2-md5:	31f35d3e63e522565e8990ead99e7507
 Patch0:		flightgear-cmake.patch
-Patch1:		flightgear-shader.patch
 URL:		http://www.flightgear.org/
 BuildRequires:	cmake
 BuildRequires:	OpenAL-devel
@@ -47,7 +46,6 @@ rozpowszechniać idee tego typu symulacji.
 %prep
 %setup -q -n flightgear-%{version} -a 1
 %patch0 -p1
-%patch1 -p1
 
 find %{name} -name 'CVS' -type d | xargs rm -rf
 
@@ -65,9 +63,9 @@ install -d $RPM_BUILD_ROOT%{_datadir}/games/%{name}
 	DESTDIR=$RPM_BUILD_ROOT
 
 echo "#!/bin/sh" > runfgfs
-echo "exec %{_bindir}/fgfs --fg-root=%{_datadir}/games/%{name} \$*" >> runfgfs
+echo "exec %{_bindir}/fgfs --fg-root=%{_datadir}/games/%{name}/fgdata \$*" >> runfgfs
 install runfgfs $RPM_BUILD_ROOT%{_bindir}
-cp -R data $RPM_BUILD_ROOT%{_datadir}/games/%{name}
+cp -R fgdata $RPM_BUILD_ROOT%{_datadir}/games/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
