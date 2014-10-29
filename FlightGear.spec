@@ -6,7 +6,7 @@ Summary:	Free Flight Simulator
 Summary(pl.UTF-8):	darmowy symulator lotu
 Name:		FlightGear
 Version:	2.12.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://mirrors.ibiblio.org/pub/mirrors/flightgear/ftp/Source/flightgear-%{version}.tar.bz2
