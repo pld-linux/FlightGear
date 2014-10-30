@@ -10,9 +10,9 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://mirrors.ibiblio.org/pub/mirrors/flightgear/ftp/Source/flightgear-%{version}.tar.bz2
-# Source0-md5:	23e2de5f311f4cbe94ec3386736ee8a5
+# Source0-md5:	0a16920cc22ea070f8bb345e76c55e05
 Source1:	ftp://mirrors.ibiblio.org/pub/mirrors/flightgear/ftp/Shared/%{name}-data-%{version}.tar.bz2
-# Source1-md5:	049cfa1f7bc7de528630c2a41c6ad6eb
+# Source1-md5:	24774fae7199bcbc5e23672f4a586884
 #Source2:	ftp://ftp.flightgear.org/pub/fgfs/Everything-0.7/Base-Packages/fgfs-docs-0.7.7.tar.gz
 ## Source2-md5:	31f35d3e63e522565e8990ead99e7507
 Patch0:		flightgear-cmake.patch
