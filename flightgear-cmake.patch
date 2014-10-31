@@ -1,7 +1,6 @@
 --- flightgear-2.10.0/utils/fgadmin/src/CMakeLists.txt-orig	2012-06-26 22:06:15.000000000 +0200
 +++ flightgear-2.10.0/utils/fgadmin/src/CMakeLists.txt	2013-03-22 14:09:25.876770608 +0100
-@@ -1,6 +1,6 @@
- 
+@@ -1,5 +1,5 @@
  fltk_wrap_ui(FGAdminUI fgadmin.fl)
 -add_library(FGAdminUI ${FGAdminUI_FLTK_UI_SRCS})
 +add_library(FGAdminUI STATIC ${FGAdminUI_FLTK_UI_SRCS})
