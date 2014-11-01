@@ -1,0 +1,145 @@
+diff --git a/src/Canvas/canvas_mgr.cxx b/src/Canvas/canvas_mgr.cxx
+index 6646b77..820934e 100644
+--- a/src/Canvas/canvas_mgr.cxx
++++ b/src/Canvas/canvas_mgr.cxx
+@@ -18,6 +18,8 @@
+ 
+ #include "canvas_mgr.hxx"
+ 
++#include <osg/Version>
++
+ #include <Cockpit/od_gauge.hxx>
+ #include <Main/fg_props.hxx>
+ #include <Scripting/NasalModelData.hxx>
+@@ -49,7 +51,11 @@ static sc::Placements addSceneObjectPlacement( SGPropertyNode* placement,
+     model_data->getNode(),
+     placement,
+     canvas->getTexture(),
++#if OSG_VERSION_LESS_THAN(3,3,2)
+     canvas->getCullCallback(),
++#else
++    dynamic_cast<osg::NodeCallback*>(canvas->getCullCallback()),
++#endif
+     canvas
+   );
+ }
+diff --git a/src/FDM/groundcache.cxx b/src/FDM/groundcache.cxx
+index 0b34115..379d70a 100644
+--- a/src/FDM/groundcache.cxx
++++ b/src/FDM/groundcache.cxx
+@@ -36,6 +36,7 @@
+ #include <osg/MatrixTransform>
+ #include <osg/PositionAttitudeTransform>
+ #include <osg/CameraView>
++#include <osg/Version>
+ 
+ #include <simgear/sg_inlines.h>
+ #include <simgear/constants.h>
+@@ -92,7 +93,11 @@ public:
+     }
+     virtual void apply(osg::Node& node)
+     {
++#if OSG_VERSION_LESS_THAN(3,3,2)
+         if (!testBoundingSphere(node.getBound()))
++#else
++        if (!testBoundingSphere(node.getBoundingSphere()))
++#endif
+             return;
+ 
+         addBoundingVolume(node);
+@@ -100,7 +105,11 @@ public:
+     
+     virtual void apply(osg::Group& group)
+     {
++#if OSG_VERSION_LESS_THAN(3,3,2)
+         if (!testBoundingSphere(group.getBound()))
++#else
++        if (!testBoundingSphere(group.getBoundingSphere()))
++#endif
+             return;
+ 
+         simgear::BVHSubTreeCollector::NodeList parentNodeList;
+@@ -133,7 +142,11 @@ public:
+         if (transform.getReferenceFrame() != osg::Transform::RELATIVE_RF)
+             return;
+ 
++#if OSG_VERSION_LESS_THAN(3,3,2)
+         if (!testBoundingSphere(transform.getBound()))
++#else
++        if (!testBoundingSphere(transform.getBoundingSphere()))
++#endif
+             return;
+ 
+         osg::Matrix inverseMatrix;
+diff --git a/src/Scenery/scenery.cxx b/src/Scenery/scenery.cxx
+index 73d0b7f..d5fa933 100644
+--- a/src/Scenery/scenery.cxx
++++ b/src/Scenery/scenery.cxx
+@@ -34,6 +34,7 @@
+ #include <osg/PositionAttitudeTransform>
+ #include <osg/CameraView>
+ #include <osg/LOD>
++#include <osg/Version>
+ 
+ #include <osgViewer/Viewer>
+ 
+@@ -112,7 +113,11 @@ public:
+     {
+         if (&node == _skipNode)
+             return;
++#if OSG_VERSION_LESS_THAN(3,3,2)
+         if (!testBoundingSphere(node.getBound()))
++#else
++        if (!testBoundingSphere(node.getBoundingSphere()))
++#endif
+             return;
+ 
+         addBoundingVolume(node);
+@@ -122,7 +127,11 @@ public:
+     {
+         if (&group == _skipNode)
+             return;
++#if OSG_VERSION_LESS_THAN(3,3,2)
+         if (!testBoundingSphere(group.getBound()))
++#else
++        if (!testBoundingSphere(group.getBoundingSphere()))
++#endif
+             return;
+ 
+         traverse(group);
+@@ -153,7 +162,11 @@ private:
+         if (transform.getReferenceFrame() != osg::Transform::RELATIVE_RF)
+             return;
+ 
++#if OSG_VERSION_LESS_THAN(3,3,2)
+         if (!testBoundingSphere(transform.getBound()))
++#else
++        if (!testBoundingSphere(transform.getBoundingSphere()))
++#endif
+             return;
+ 
+         osg::Matrix inverseMatrix;
+diff --git a/src/Scenery/tileentry.cxx b/src/Scenery/tileentry.cxx
+index 31d14c7..d49c1b1 100644
+--- a/src/Scenery/tileentry.cxx
++++ b/src/Scenery/tileentry.cxx
+@@ -29,6 +29,7 @@
+ #include <istream>
+ 
+ #include <osg/LOD>
++#include <osg/Version>
+ 
+ #include <simgear/bucket/newbucket.hxx>
+ #include <simgear/debug/logstream.hxx>
+@@ -81,7 +82,11 @@ void TileEntry::prep_ssg_node(float vis) {
+         return;
+     // visibility can change from frame to frame so we update the
+     // range selector cutoff's each time.
++#if OSG_VERSION_LESS_THAN(3,3,2)
+     float bounding_radius = _node->getChild(0)->getBound().radius();
++#else
++    float bounding_radius = _node->getChild(0)->getBoundingSphere().radius();
++#endif
+     _node->setRange( 0, 0, vis + bounding_radius );
+ }
+ 
