@@ -20,12 +20,16 @@ Patch1:		OpenSceneGraph-3.3.2.patch
 URL:		http://www.flightgear.org/
 BuildRequires:	OpenAL-devel
 BuildRequires:	OpenGL-devel
+BuildRequires:	OpenSceneGraph-devel
 BuildRequires:	SimGear-devel = %{version}
 BuildRequires:	cmake
+BuildRequires:	flite-devel
 BuildRequires:	fltk-gl-devel
 BuildRequires:	freeglut-devel
+BuildRequires:	libgsm-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	libxml-devel
+BuildRequires:	speex-devel
+BuildRequires:	sqlite3-devel
 BuildRequires:	plib-devel >= 1.8.5-3
 BuildRequires:	zlib-devel
 Requires:	%{name}-data = %{version}
@@ -71,12 +75,15 @@ EOF
 %build
 install -d build
 cd build
-%cmake ..
+%cmake .. \
+	-DSYSTEM_SQLITE:BOOL=ON
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/games/%{name}
+
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
