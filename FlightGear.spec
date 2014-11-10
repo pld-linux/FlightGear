@@ -2,6 +2,10 @@
 # - Make FlightGear-extra-planes for subset of planes from
 #   http://www.flightgear.org/Downloads/aircraft/index.shtml
 
+#
+# Conditional build:
+%bcond_without	data		# don't build data package (for quick test build)
+#
 Summary:	Free Flight Simulator
 Summary(pl.UTF-8):	darmowy symulator lotu
 Name:		FlightGear
@@ -64,7 +68,7 @@ This package contains the base scenery for FlightGear and must be
 installed
 
 %prep
-%setup -q -n flightgear-%{version} -a 1
+%setup -q -n flightgear-%{version} %{?with_data:-a 1}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -90,7 +94,9 @@ install -d $RPM_BUILD_ROOT%{_datadir}/games/%{name}
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -p runfgfs $RPM_BUILD_ROOT%{_bindir}
+%if %{with data}
 cp -a fgdata $RPM_BUILD_ROOT%{_datadir}/games/%{name}
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -101,6 +107,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/*/*
 
+%if %{with data}
 %files data
 %defattr(644,root,root,755)
 %{_datadir}/games/%{name}
+%endif
