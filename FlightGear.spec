@@ -17,6 +17,7 @@ Source1:	ftp://mirrors.ibiblio.org/pub/mirrors/flightgear/ftp/Shared/%{name}-dat
 ## Source2-md5:	31f35d3e63e522565e8990ead99e7507
 Patch0:		flightgear-cmake.patch
 Patch1:		OpenSceneGraph-3.3.2.patch
+Patch2:		rtti-fix.patch
 URL:		http://www.flightgear.org/
 BuildRequires:	OpenAL-devel
 BuildRequires:	OpenGL-devel
@@ -66,6 +67,7 @@ installed
 %setup -q -n flightgear-%{version} -a 1
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 cat > runfgfs <<'EOF'
 #!/bin/sh
