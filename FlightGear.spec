@@ -9,19 +9,15 @@
 Summary:	Free Flight Simulator
 Summary(pl.UTF-8):	darmowy symulator lotu
 Name:		FlightGear
-Version:	3.2.0
-Release:	3
+Version:	2016.2.1
+Release:	1
 License:	GPL
 Group:		X11/Applications/Games
-Source0:	ftp://mirrors.ibiblio.org/pub/mirrors/flightgear/ftp/Source/flightgear-%{version}.tar.bz2
-# Source0-md5:	0a16920cc22ea070f8bb345e76c55e05
-Source1:	ftp://mirrors.ibiblio.org/pub/mirrors/flightgear/ftp/Shared/%{name}-data-%{version}.tar.bz2
-# Source1-md5:	24774fae7199bcbc5e23672f4a586884
-#Source2:	ftp://ftp.flightgear.org/pub/fgfs/Everything-0.7/Base-Packages/fgfs-docs-0.7.7.tar.gz
-## Source2-md5:	31f35d3e63e522565e8990ead99e7507
+Source0:	http://downloads.sourceforge.net/project/flightgear/release-2016.2/flightgear-%{version}.tar.bz2
+# Source0-md5:	04b4817ba9d8953013c43f5f201b495f
+Source1:	http://downloads.sourceforge.net/project/flightgear/release-2016.2//%{name}-%{version}-data.tar.bz2
+# Source1-md5:	f118026487513e16d0aad185d3818f7b
 Patch0:		flightgear-cmake.patch
-Patch1:		OpenSceneGraph-3.3.2.patch
-Patch2:		rtti-fix.patch
 URL:		http://www.flightgear.org/
 BuildRequires:	OpenAL-devel
 BuildRequires:	OpenGL-devel
@@ -44,6 +40,7 @@ Requires:	plib >= 1.8.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
+%define		filterout	-flto
 
 %description
 The Flight Gear project is working to create a sophisticated flight
@@ -70,8 +67,6 @@ installed
 %prep
 %setup -q -n flightgear-%{version} %{?with_data:-a 1}
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 cat > runfgfs <<'EOF'
 #!/bin/sh
