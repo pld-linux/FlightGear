@@ -56,9 +56,7 @@ rozpowszechniać idee tego typu symulacji.
 Summary:	FlightGear base scenery and data files
 License:	GPL v2+
 Group:		Applications/Games
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description data
 This package contains the base scenery for FlightGear and must be
