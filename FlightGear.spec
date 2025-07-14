@@ -64,7 +64,7 @@ installed
 
 %prep
 %setup -q -n flightgear-%{version} %{?with_data:-a 1}
-%patch0 -p1
+%patch -P0 -p1
 
 cat > runfgfs <<'EOF'
 #!/bin/sh
